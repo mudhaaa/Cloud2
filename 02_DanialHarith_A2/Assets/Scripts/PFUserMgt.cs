@@ -37,18 +37,22 @@ public class PFUserMgt : MonoBehaviour
     private void OnLoginSucc(LoginResult result)
     {
         msgbox.text = "Log In Success!" + result.PlayFabId;
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Menu");
     }
 
     private void OnRegSucc(RegisterPlayFabUserResult result)
     {
         msgbox.text = "Register Success!" + result.PlayFabId;
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Menu");
     }
 
     private void OnError(PlayFabError error)
     {
         msgbox.text = "FAILURE!" + error.GenerateErrorReport();
     }
-
+    public void OnLogOut()
+    {
+        PlayFabClientAPI.ForgetAllCredentials();
+        SceneManager.LoadScene("RegLogInScene");
+    }
 }

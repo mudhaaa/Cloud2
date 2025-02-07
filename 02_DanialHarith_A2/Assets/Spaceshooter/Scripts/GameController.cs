@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using PlayFab;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 public class GameController : MonoBehaviour {
 
@@ -18,7 +20,7 @@ public class GameController : MonoBehaviour {
     public Text gameOverText;
     public Text restartText;
     public Text mainMenuText;
-
+    public int asteroidsDestroyed;
     private bool restart;
     private bool gameOver;
     private int score;
@@ -42,11 +44,23 @@ public class GameController : MonoBehaviour {
 
     private void Update() {
         if(restart){
-            if(Input.GetKey(KeyCode.R)){
+            if (Input.GetKey(KeyCode.R))
+            {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            } 
-            else if(Input.GetKey(KeyCode.Q)){
+            }
+            else if (Input.GetKey(KeyCode.Q))
+            {
                 SceneManager.LoadScene("Menu");
+                if (!PFUserMgt.Instance.isGuest)
+                {
+                    PFUserMgt.Instance.GetXP(PlayFabSettings.staticPlayer.PlayFabId);
+                    PFUserMgt.Instance.SetXP(score);
+
+                    PFInventoryMgt.Instance.AddVirtualCurrencies(asteroidsDestroyed);
+
+                    PFLeaderboardMgt.Instance.SetScore(PFUserMgt.Instance.xpValue);
+                    PFLeaderboardMgt.Instance.OnButtonSendLeaderboard();
+                }
             }
         }
         if (gameOver) {
@@ -83,7 +97,7 @@ public class GameController : MonoBehaviour {
     }
 
     void updateScore(){
-        scoreText.text = "Score:" + score;
+        scoreText.text = "Score:" + score + "\nAD collected: " + asteroidsDestroyed;
     }
 
 }

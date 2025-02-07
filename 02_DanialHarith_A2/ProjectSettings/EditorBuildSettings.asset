@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/RegLogInScene.unity
+    path: Assets/Spaceshooter/_Scenes/RegLogInScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Spaceshooter/_Scenes/Menu.unity
@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Spaceshooter/_Scenes/Main.unity
     guid: 0938f1be7c1804045bc2441b202785af
+  - enabled: 1
+    path: Assets/Spaceshooter/_Scenes/Shop.unity
+    guid: 154f8db722804a944bee561368c68124
+  - enabled: 1
+    path: Assets/Spaceshooter/_Scenes/Leaderboard.unity
+    guid: d3fe1005fff6e2e449479361e67e599f
+  - enabled: 1
+    path: Assets/Spaceshooter/_Scenes/Inventory.unity
+    guid: d148a5e8b690a0246b24c18d31210e34
   m_configObjects: {}
